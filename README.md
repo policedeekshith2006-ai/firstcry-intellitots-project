@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FirstCry Intellitots: Reading Progress & Phonics Milestone Tracker
 
 A working prototype for a child reading level progression tracker, designed for preschool workflows. This repository provides a reference implementation for tracking milestones (letter recognition, phonics, word reading, sentence reading), processing teacher observations using simulated NLP/AI logic, and managing daycare center operations (admissions, attendance, routines, fees).
@@ -46,3 +47,7 @@ A working prototype for a child reading level progression tracker, designed for 
    ```bash
    npm run dev
    ```
+=======
+# firstcry-intellitots-project
+Internship Project
+>>>>>>> bc05ab452781cb3633509d633f61c3331b0eca25
