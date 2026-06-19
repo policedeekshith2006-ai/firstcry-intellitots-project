@@ -4,7 +4,8 @@
   "description": "Backend API server for FirstCry Intellitots Reading Progress Tracker",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "echo Backend build skipped"
   },
   "dependencies": {
     "express": "^4.19.2",
