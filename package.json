@@ -1,0 +1,20 @@
+{
+  "name": "first-cry-anti",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Monorepo root for FirstCry Intellitots frontend and backend",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "start": "npm --workspace backend run start",
+    "dev": "npm --workspace frontend run dev",
+    "start:backend": "npm --workspace backend run start",
+    "build": "npm --workspace frontend run build",
+    "lint": "npm --workspace frontend run lint"
+  },
+  "devDependencies": {
+    "@railway/cli": "^5.15.0"
+  }
+}
