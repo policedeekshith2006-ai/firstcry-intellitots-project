@@ -8,6 +8,8 @@ import { checkBackendStatus } from './api';
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [toasts, setToasts] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useState('Ms. Priya Sharma');
+  const [isEditingName, setIsEditingName] = useState(false);
 
   // Toast notifier helper
   const triggerNotification = (message, type = 'info') => {
@@ -74,7 +76,37 @@ function App() {
 
         <div className="sidebar-profile-card">
           <div style={{ fontSize: '12px', color: 'var(--dark-light)', fontWeight: '500' }}>Logged in user</div>
-          <strong>Ms. Priya Sharma</strong>
+          {isEditingName ? (
+            <input 
+              type="text" 
+              value={loggedInUser} 
+              onChange={e => setLoggedInUser(e.target.value)} 
+              onBlur={() => setIsEditingName(false)} 
+              onKeyDown={e => { if (e.key === 'Enter') setIsEditingName(false); }} 
+              style={{ 
+                width: '100%', 
+                fontSize: '14px', 
+                fontWeight: '700', 
+                border: '1.5px solid var(--primary)', 
+                borderRadius: '6px', 
+                padding: '4px 8px', 
+                outline: 'none', 
+                margin: '4px 0',
+                background: 'rgba(255,255,255,0.8)',
+                color: 'var(--dark)' 
+              }} 
+              autoFocus 
+            />
+          ) : (
+            <div 
+              onClick={() => setIsEditingName(true)} 
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', margin: '4px 0' }}
+              title="Click to edit name"
+            >
+              <strong style={{ fontSize: '14px', color: 'var(--dark)' }}>{loggedInUser}</strong>
+              <span style={{ fontSize: '12px', opacity: 0.7 }}>✏️</span>
+            </div>
+          )}
           <p>Role: Primary Teacher</p>
         </div>
       </aside>
@@ -86,7 +118,7 @@ function App() {
         )}
         
         {activeTab === 'tracker' && (
-          <ChildTracker triggerNotification={triggerNotification} />
+          <ChildTracker triggerNotification={triggerNotification} currentUser={loggedInUser} />
         )}
 
         {activeTab === 'portal' && (

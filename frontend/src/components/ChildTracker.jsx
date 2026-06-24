@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getChildren, getClassrooms, getChildDetails, updateMilestone, addObservation } from '../api';
 
-export default function ChildTracker({ triggerNotification }) {
+export default function ChildTracker({ triggerNotification, currentUser }) {
   const [children, setChildren] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
   const [selectedChildId, setSelectedChildId] = useState(null);
@@ -14,7 +14,7 @@ export default function ChildTracker({ triggerNotification }) {
   
   // Observation logger state
   const [notes, setNotes] = useState('');
-  const [observer, setObserver] = useState('Ms. Priya Sharma');
+  const [observer, setObserver] = useState(currentUser || 'Ms. Priya Sharma');
   const [aiPreview, setAiPreview] = useState(null);
   const [processingAi, setProcessingAi] = useState(false);
 
@@ -68,6 +68,12 @@ export default function ChildTracker({ triggerNotification }) {
       fetchChildDetails(selectedChildId);
     }
   }, [selectedChildId]);
+
+  useEffect(() => {
+    if (currentUser) {
+      setObserver(currentUser);
+    }
+  }, [currentUser]);
 
   const handleMilestoneUpdate = async (level, skillName, newStatus) => {
     if (!selectedChildId) return;
